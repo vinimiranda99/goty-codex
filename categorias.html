@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorias | GOTY Codex</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Explorar Categorias</h1>
+        
+        <a href="index.html" class="btn-navegacao">Voltar ao Início</a>
+    </header>
+
+    <main>
+        <div id="grade-categorias" class="categories-grid"></div>
+    </main>
+
+    <script>
+        // Lista de categorias (A mesma do script.js)
+        const categorias = [
+            "Game of the Year", "Melhor Direção", "Melhor Narrativa",
+            "Melhor Direção de Arte", "Melhor Trilha Sonora", "Melhor Design de Áudio",
+            "Inovação em Acessibilidade", "Melhor Jogo de Ação", "Melhor Jogo de Ação/Aventura",
+            "Melhor RPG", "Melhor Jogo de Luta", "Melhor Jogo de Simulação/Estratégia",
+            "Melhor Jogo de Esporte/Corrida", "Melhor Jogo Familiar", "Melhor Multiplayer",
+            "Melhor Jogo Indie", "Melhor Estreia Indie", "Melhor Jogo Mobile"
+        ];
+
+        const container = document.getElementById("grade-categorias");
+
+        // Gera os cards automaticamente
+        categorias.forEach(cat => {
+            const link = document.createElement("a");
+            link.className = "category-card"; 
+            link.innerText = cat;
+            
+            // Cria o link com o filtro para a página inicial
+            link.href = `index.html?categoria=${encodeURIComponent(cat)}`;
+            
+            container.appendChild(link);
+        });
+    </script>
+</body>
+</html>

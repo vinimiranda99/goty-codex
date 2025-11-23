@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"  />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>GOTY Codex</title>
+</head>
+<body>
+    <header>
+        <h1>GOTY Codex</h1>
+        <div>
+            <input type="text" placeholder="Procure por um jogo">
+            <button id="botao-busca" onclick="iniciarBusca()">buscar</button>
+        </div>
+        
+
+       <div style="display: flex; gap: 10px;">
+       <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <a href="categorias.html" class="btn-navegacao">Categorias</a>
+    <a href="tags.html" class="btn-navegacao">Tags</a>
+    
+    <button id="btn-descubra" class="btn-navegacao">
+        Descubra um jogo
+    </button>
+
+    <a href="https://thegameawards.com/categories" target="_blank" class="btn-navegacao">
+        Vote no Game Awards ↗
+    </a>
+    <button id="btn-favoritos" class="btn-navegacao">
+    Favoritos <i class="fa-solid fa-heart"></i>
+</button>
+    
+</div>
+    </header>
+
+    </div>
+    <main>
+        <section class="card-container">
+            <!-- Os cards de jogos serão inseridos aqui pelo script.js -->
+         </section>
+    </main>
+    <footer class="footer">
+        <ul class="footer-links">
+        </ul>
+    </footer>
+<div id="modal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span id="modal-fechar" class="modal-fechar">&times;</span>
+        <iframe 
+            id="modal-video" 
+            src="" 
+            frameborder="0" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+    <script src="script.js"></script>
+</body>
+</html>

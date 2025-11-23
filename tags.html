@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags | GOTY Codex</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Explorar Tags</h1>
+        <a href="index.html" class="btn-navegacao">Voltar ao Início</a>
+    </header>
+
+    <main>
+        <div id="grade-tags" class="categories-grid">
+            <p style="color: white;">Carregando tags...</p>
+        </div>
+    </main>
+
+    <script>
+        // LISTA NEGRA: Tags que NÃO devem virar botões nesta página
+        const tagsIgnoradas = new Set([
+            "Battle Royale", "Cinematográfico", "Coletânea", "Comédia",
+            "Educativo", "Exploração", "Extração", "Futebol", "Gerenciamento",
+            "Gore", "Guerra", "Hack and Slash", "LEGO", "Medieval", "Mitologia",
+            "Ninja", "Online Co-Op", "Party Game", "Retro", "RTS", "Samurai",
+            "Survival Horror", "Suspense", "Tático", "Tiro", "Turnos"
+        ]);
+
+        async function gerarTags() {
+            const container = document.getElementById("grade-tags");
+            container.innerHTML = "<p style='color: white;'>Carregando tags...</p>";
+            
+            try {
+                const response = await fetch("data.json");
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const dados = await response.json();
+
+                
+                const todasAsTags = dados.flatMap(jogo => jogo.tags);
+                
+                
+                const tagsUnicas = [...new Set(todasAsTags)].sort();
+
+                // 4. Limpa o container antes de adicionar os novos elementos
+                container.innerHTML = ""; 
+
+                // 5. Itera sobre as tags únicas e cria os links
+                tagsUnicas.forEach(tag => {
+                    // Só cria o botão se a tag NÃO estiver na lista de ignoradas
+                    if (!tagsIgnoradas.has(tag)) {
+                        const link = document.createElement("a");
+                        link.className = "category-card"; 
+                        link.innerText = tag;
+                        link.href = `index.html?tag=${encodeURIComponent(tag)}`;
+                        container.appendChild(link);
+                    }
+                });
+            } catch (error) {
+                console.error("Erro ao carregar tags:", error);
+                container.innerHTML = "<p style='color: red;'>Falha ao carregar as tags. Tente recarregar a página.</p>";
+            }
+        }
+
+        gerarTags();
+    </script>
+</body>
+</html>
